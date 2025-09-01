@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pierre-Feuille-Ciseaux</title>
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <!-- Conteneur principal -->
+  <div id="app">
+    <h1>Pierre - Feuille - Ciseaux</h1>
+    <!-- Boutons de choix -->
+    <div id="buttons">
+      <button id="pierre">Pierre</button>
+      <button id="feuille">Feuille</button>
+      <button id="ciseaux">Ciseaux</button>
+    </div>
+    <!-- Zone d'affichage du résultat -->
+    <div id="result">
+      <p id="resultText"></p>
+    </div>
+    <!-- Scoreboard -->
+    <div id="scoreboard">
+      <h2>Scoreboard</h2>
+      <p id="score"></p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/gameLogic.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
