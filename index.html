@@ -3,38 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pierre-Feuille-Ciseaux</title>
-  <!-- Styles -->
+  <title>Pierre-Feuille-Ciseaux Optimisé</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/components.css">
 </head>
-<body>
+<body class="light">
   <!-- Conteneur principal -->
   <div id="app">
-    <h1>Pierre - Feuille - Ciseaux</h1>
+    <h1>🗿📄✂️ Pierre - Feuille - Ciseaux</h1>
+    
     <!-- Boutons de choix -->
     <div id="buttons">
-      <button id="pierre">Pierre</button>
-      <button id="feuille">Feuille</button>
-      <button id="ciseaux">Ciseaux</button>
+      <button id="pierre" data-choice="pierre">🗿 Pierre</button>
+      <button id="feuille" data-choice="feuille">📄 Feuille</button>
+      <button id="ciseaux" data-choice="ciseaux">✂️ Ciseaux</button>
     </div>
+    
     <!-- Zone d'affichage du résultat -->
     <div id="result">
-      <p id="resultText"></p>
+      <p id="resultText">Choisissez votre arme !</p>
     </div>
+    
     <!-- Scoreboard -->
     <div id="scoreboard">
-      <h2>Scoreboard</h2>
-      <p id="score"></p>
+      <h2>📊 Tableau des scores</h2>
+      <p id="score">Joueur: 0 | IA: 0 | Égalités: 0</p>
+      <p id="gameStats">Parties jouées: 0</p>
+    </div>
+
+    <!-- Contrôles -->
+    <div class="controls">
+      <button id="resetButton">🔄 Réinitialiser</button>
+      <button id="themeButton">🌙 Mode sombre</button>
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
   <script src="js/gameLogic.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/storage.js"></script>
-  <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,50 +1,67 @@
-// Logique pure du jeu (aucun DOM ici)
+// ===== LOGIQUE DU JEU =====
 
-// Liste des choix canoniques
-const choices = ["pierre", "feuille", "ciseaux"];
-Object.freeze(choices); // Empêche la modification de ce tableau
-
-// Règle du jeu 
-const rules = Object.freeze({
-    "pierre" : "ciseaux",
-    "feuille" : "pierre",
-    "ciseaux" : "feuille"
+// Configuration du jeu
+const GAME_CONFIG = Object.freeze({
+    choices: ["pierre", "feuille", "ciseaux"],
+    rules: {
+    "pierre": "ciseaux",    // Pierre bat Ciseaux
+    "feuille": "pierre",    // Feuille bat Pierre  
+    "ciseaux": "feuille"    // Ciseaux bat Feuille
+    },
+    results: {
+    WIN: "win",
+    LOSE: "lose", 
+    DRAW: "draw"
+    },
+    emojis: {
+    "pierre": "🗿",
+    "feuille": "📄", 
+    "ciseaux": "✂️"
+    }
 });
 
-
-
-// Constantes pour les résultats
-const RESULT_WIN = "win";
-const RESULT_LOSE = "lose";
-const RESULT_DRAW = "draw";
-
+/**
+ * Valide si un choix est correct
+ * @param {string} choice - Le choix à valider
+ * @returns {boolean} - True si le choix est valide
+ */
 function isValidChoice(choice) {
-    return typeof choice === "string" && choices.includes(choice.toLowerCase().trim());
+    if (typeof choice !== "string") return false;
+    const normalizedChoice = choice.toLowerCase().trim();
+    return GAME_CONFIG.choices.includes(normalizedChoice);
 }
 
+/**
+ * Génère un choix aléatoire pour l'IA
+ * @returns {string} - Choix de l'IA
+ */
+function getAIChoice() {
+    const randomIndex = Math.floor(Math.random() * GAME_CONFIG.choices.length);
+    return GAME_CONFIG.choices[randomIndex];
+}
 
 /**
- * Retourne le gagnant entre deux choix
- * @param {string} player
- * @param {string} ai
- * @returns {"win"|"lose"|"draw"}
+ * Détermine le gagnant entre deux choix
+ * @param {string} playerChoice - Choix du joueur
+ * @param {string} aiChoice - Choix de l'IA
+ * @returns {string} - Résultat: "win", "lose" ou "draw"
  */
-function getWinner(player, ai) {
-    //Normalisation
-    player = player.toLowerCase().trim();
-    ai = ai.toLowerCase().trim();
+function determineWinner(playerChoice, aiChoice) {
+    // Normalisation des entrées
+    const player = playerChoice.toLowerCase().trim();
+    const ai = aiChoice.toLowerCase().trim();
 
-    // Vérifier si les choix sont valides
+    // Validation des choix
     if (!isValidChoice(player) || !isValidChoice(ai)) {
-        throw new Error("Choix invalide");
+    throw new Error(`Choix invalide: joueur="${player}", IA="${ai}"`);
     }
 
-    // Décision
+    // Logique de victoire
     if (player === ai) {
-        return RESULT_DRAW;
-    } else if (rules[player] === ai) {
-        return RESULT_WIN;
+    return GAME_CONFIG.results.DRAW;
+    } else if (GAME_CONFIG.rules[player] === ai) {
+    return GAME_CONFIG.results.WIN;
     } else {
-        return RESULT_LOSE;
+    return GAME_CONFIG.results.LOSE;
     }
 }
